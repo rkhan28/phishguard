@@ -47,7 +47,7 @@ export function AnimatedBackground() {
     let animationFrameId: number;
 
     const animate = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+      ctx.fillStyle = "rgba(4, 12, 24, 0.18)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, i) => {
@@ -76,11 +76,11 @@ export function AnimatedBackground() {
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, size * 2);
 
         if (particle.hue === 0) {
-          gradient.addColorStop(0, `rgba(248, 113, 113, ${alpha})`);
-          gradient.addColorStop(0.5, `rgba(220, 38, 38, ${alpha * 0.5})`);
+          gradient.addColorStop(0, `rgba(56, 189, 248, ${alpha})`);
+          gradient.addColorStop(0.5, `rgba(14, 165, 233, ${alpha * 0.5})`);
         } else {
-          gradient.addColorStop(0, `rgba(40, 40, 40, ${alpha * 0.7})`);
-          gradient.addColorStop(0.5, `rgba(20, 20, 20, ${alpha * 0.4})`);
+          gradient.addColorStop(0, `rgba(15, 118, 110, ${alpha * 0.65})`);
+          gradient.addColorStop(0.5, `rgba(19, 78, 74, ${alpha * 0.35})`);
         }
         gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
 
@@ -105,7 +105,7 @@ export function AnimatedBackground() {
             ctx.beginPath();
             ctx.moveTo(x, y);
             ctx.lineTo(ox, oy);
-            ctx.strokeStyle = `rgba(220, 38, 38, ${lineAlpha})`;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

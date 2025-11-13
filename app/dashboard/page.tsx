@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 export default function Dashboard() {
+  // TODO: Replace mock data with a request to `/api/reports` once the backend is implemented.
   return (
     <div className="container mx-auto px-6 py-16 max-w-6xl">
       <motion.div
@@ -31,7 +32,7 @@ export default function Dashboard() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <Link href={`/report/${report.id}`}>
-                <div className="group card-3d p-6 glass-effect rounded-2xl hover:glow-red cursor-pointer border-l-4 border-l-transparent hover:border-l-primary">
+                <div className="group card-3d p-6 glass-effect rounded-2xl hover:glow-azure cursor-pointer border-l-4 border-l-transparent hover:border-l-primary">
                   <div className="flex items-start justify-between gap-6">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
@@ -42,7 +43,7 @@ export default function Dashboard() {
                           report.score >= 70
                             ? 'bg-destructive shadow-lg shadow-destructive/50'
                             : report.score >= 50
-                            ? 'bg-primary shadow-lg shadow-primary/50'
+                            ? 'bg-amber-400 shadow-lg shadow-amber-400/40'
                             : 'bg-muted-foreground'
                         }`} />
                       </div>
@@ -74,7 +75,7 @@ export default function Dashboard() {
                           report.score >= 70
                             ? 'text-destructive'
                             : report.score >= 50
-                            ? 'text-primary'
+                            ? 'text-amber-400'
                             : 'text-foreground'
                         }`}>
                           {report.score}

@@ -2,24 +2,26 @@
 
 ## 🎨 Color Palette
 
-### Light Mode (Default: Off-White & Red)
+### Light Mode (Crystal Blue)
 ```css
-Background:     hsl(0, 0%, 98%)    /* Off-white */
-Foreground:     hsl(0, 0%, 10%)    /* Near-black */
-Primary:        hsl(0, 65%, 45%)   /* Burgundy */
-Border:         hsl(0, 0%, 88%)    /* Light gray */
-Muted Text:     hsl(0, 0%, 45%)    /* Medium gray */
-Destructive:    hsl(0, 70%, 50%)   /* Crimson red */
+Background:     hsl(215, 38%, 97%)   /* Misty steel-blue */
+Foreground:     hsl(222, 47%, 12%)   /* Midnight navy */
+Primary:        hsl(188, 80%, 44%)   /* Vibrant teal */
+Border:         hsl(218, 32%, 84%)   /* Cool gray-blue */
+Muted Text:     hsl(220, 22%, 35%)   /* Slate */
+Accent:         hsl(190, 70%, 88%)   /* Soft aqua glow */
+Destructive:    hsl(3, 82%, 55%)     /* Alert red */
 ```
 
-### Dark Mode (Black & Muted Red)
+### Dark Mode (Deep Ocean)
 ```css
-Background:     hsl(0, 0%, 8%)     /* Deep black */
-Foreground:     hsl(0, 0%, 95%)    /* Off-white */
-Primary:        hsl(0, 55%, 50%)   /* Muted red */
-Border:         hsl(0, 0%, 18%)    /* Dark gray */
-Muted Text:     hsl(0, 0%, 60%)    /* Light gray */
-Destructive:    hsl(0, 60%, 45%)   /* Dark red */
+Background:     hsl(222, 47%, 7%)    /* Abyssal blue */
+Foreground:     hsl(214, 32%, 94%)   /* Ice white */
+Primary:        hsl(189, 84%, 52%)   /* Electric cyan */
+Border:         hsl(219, 26%, 22%)   /* Midnight teal */
+Muted Text:     hsl(216, 19%, 72%)   /* Mist gray */
+Accent:         hsl(188, 60%, 20%)   /* Deep sea green */
+Destructive:    hsl(3, 72%, 56%)     /* Signal red */
 ```
 
 ## 🔄 Dark Mode Toggle
@@ -50,18 +52,18 @@ const { theme, setTheme } = useTheme();
 ### Usage Pattern
 ```tsx
 const getRiskColor = (score: number) => {
-  if (score >= 70) return 'text-destructive';  // Red
-  if (score >= 50) return 'text-primary';      // Burgundy
-  return 'text-foreground';                     // Default
+  if (score >= 70) return 'text-destructive';  // Critical (red)
+  if (score >= 50) return 'text-amber-400';    // Elevated (amber)
+  return 'text-foreground';                    // Normal (neutral)
 };
 
 <div className={getRiskColor(score)}>{score}</div>
 ```
 
 ### Visual Indicators
-- **High Risk (≥70)**: Bright red - immediate attention needed
-- **Medium Risk (50-69)**: Burgundy - caution advised
-- **Low Risk (<50)**: Default color - likely safe
+- **High Risk (≥70)**: Alert red - immediate attention needed
+- **Medium Risk (50-69)**: Amber glow - caution advised
+- **Low Risk (<50)**: Neutral tone - likely safe
 
 ## 🔧 Technical Details
 
@@ -113,11 +115,11 @@ All components automatically transition when theme changes - no additional code 
 Edit in `app/globals.css`:
 ```css
 :root {
-  --primary: 0 65% 45%;  /* Light mode burgundy */
+  --primary: 188 80% 44%;  /* Light mode teal */
 }
 
 .dark {
-  --primary: 0 55% 50%;  /* Dark mode muted red */
+  --primary: 189 84% 52%;  /* Dark mode electric cyan */
 }
 ```
 

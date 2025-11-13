@@ -18,6 +18,7 @@ export default function TestPage() {
     setIsAnalyzing(true);
     setResult(null);
 
+    // TODO: Replace the timeout with a POST request to `/api/analyze` when the backend is available.
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const suspiciousKeywords = ["urgent", "immediate", "verify", "suspended", "click here", "act now", "limited time"];
@@ -97,14 +98,14 @@ export default function TestPage() {
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="glass-effect p-8 rounded-2xl space-y-8 glow-red"
+              className="glass-effect p-8 rounded-2xl space-y-8 glow-azure"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold">Analysis Results</h2>
                   <div className="text-right">
                     <div className={`text-5xl font-bold mb-1 ${
-                      result.score >= 70 ? 'text-destructive' : result.score >= 50 ? 'text-primary' : 'text-foreground'
+                      result.score >= 70 ? 'text-destructive' : result.score >= 50 ? 'text-amber-400' : 'text-foreground'
                     }`}>
                       {result.score}
                     </div>
@@ -117,7 +118,7 @@ export default function TestPage() {
                     animate={{ width: `${result.score}%` }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     className={`h-full rounded-full ${
-                      result.score >= 70 ? 'bg-destructive' : result.score >= 50 ? 'bg-primary' : 'bg-foreground'
+                      result.score >= 70 ? 'bg-destructive' : result.score >= 50 ? 'bg-amber-400' : 'bg-foreground'
                     }`}
                   />
                 </div>
