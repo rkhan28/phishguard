@@ -29,6 +29,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // TODO: Replace simulated counters with real-time stats from `/api/overview` when backend endpoints are ready.
     const interval = setInterval(() => {
       setThreatsBlocked(prev => prev + Math.floor(Math.random() * 3));
       setEmailsScanned(prev => prev + Math.floor(Math.random() * 15));
@@ -165,7 +166,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="grid grid-cols-3 gap-6 pt-12"
+              className="grid grid-cols-1 gap-6 pt-12 sm:grid-cols-3"
             >
               <div className="relative group">
                 <div className="absolute inset-0 bg-primary/5 rounded-2xl blur-xl group-hover:bg-primary/10 transition-all" />

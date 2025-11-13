@@ -39,7 +39,7 @@ export function ReportClient({ report }: ReportClientProps) {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-medium">Risk Assessment</h2>
               <div className="text-right">
-                <div className={`text-3xl font-medium ${report.score >= 70 ? 'text-destructive' : report.score >= 50 ? 'text-primary' : 'text-foreground'}`}>
+                <div className={`text-3xl font-medium ${report.score >= 70 ? 'text-destructive' : report.score >= 50 ? 'text-amber-400' : 'text-foreground'}`}>
                   {report.score}
                 </div>
                 <div className="text-sm text-muted-foreground">Risk Score</div>
@@ -47,7 +47,7 @@ export function ReportClient({ report }: ReportClientProps) {
             </div>
             <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
               <div
-                className={`h-full transition-all ${report.score >= 70 ? 'bg-destructive' : report.score >= 50 ? 'bg-primary' : 'bg-foreground'}`}
+                className={`h-full transition-all ${report.score >= 70 ? 'bg-destructive' : report.score >= 50 ? 'bg-amber-400' : 'bg-foreground'}`}
                 style={{ width: `${report.score}%` }}
               />
             </div>

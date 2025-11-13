@@ -19,7 +19,7 @@ export default function ReportPage({ params }: { params: { id: string } }) {
         <Card className="p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Report Not Found</h2>
           <p className="text-muted-foreground mb-6">
-            The email report you're looking for doesn't exist.
+            The email report you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link href="/">
             <Button>Back to Dashboard</Button>
