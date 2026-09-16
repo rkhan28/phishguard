@@ -14,8 +14,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'PhishGuard - AI Email Security',
-  description: 'AI-powered email security that detects phishing and malicious content',
+  title: 'PhishGuard — Email Review Prototype',
+  description: 'An email-review prototype with sample reports and a local keyword checker',
 };
 
 export default function RootLayout({
@@ -30,6 +30,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col relative">
             <AnimatedBackground />
             <Navbar />
+            <p className="relative z-10 px-6 py-3 text-center text-sm text-muted-foreground">Prototype: sample reports and keyword checks, not a production security service.</p>
             <main className="flex-1 relative z-10">{children}</main>
             <Footer />
           </div>

@@ -1,37 +1,43 @@
-# PhishGuard Frontend
+# PhishGuard
 
-PhishGuard is a next-generation AI-powered cybersecurity assistant for analyzing phishing and scam emails. This repository currently contains the frontend experience built with Next.js, Tailwind CSS, and Framer Motion.
+A phishing-awareness interface built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
-## ✨ Features
-- Immersive hero section with animated particle background and live security stats
-- Dashboard listing recent phishing analyses with color-coded risk indicators
-- Detailed report view with risk scoring, red flags, and recommended actions
-- Manual test area to simulate AI analysis against pasted email content
-- Responsive layout with animated glassmorphism cards and dark/light themes
+## What works
 
-## 🚀 Getting Started
+- Browse sample email reports on the dashboard.
+- Open individual report pages.
+- Paste text into a local keyword checker and see which configured phrases occur.
+- Switch between light and dark themes.
+
+The checker is a deterministic demonstration. There is no trained model, inbox integration, sender verification, URL scanning, or email-blocking service. A low keyword score does not establish that a message is safe.
+
+## Run locally
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open http://localhost:3000 to explore the interface.
+Open `http://localhost:3000`. No credentials are required.
 
-### Bolt.new / Vercel Deployment
-- Deploy directly on [Bolt.new](https://bolt.new) by importing this repository.
-- For Vercel, click **New Project** and connect the repo; the default `npm run build` command works out of the box.
-- Environment variables are not required yet—the dashboard is powered by mock data and placeholders. Backend endpoints will be introduced later.
+```bash
+npm run typecheck
+npm run build
+```
 
-## 🔌 Backend Integration Hooks
-- Dashboard report list: replace the mock data in `app/dashboard/page.tsx` with a request to `/api/reports`.
-- Manual test page: swap the timeout in `app/test/page.tsx` with a POST call to `/api/analyze`.
-- Home page metrics: update the simulated counters in `app/page.tsx` with data from `/api/overview`.
+The project uses Next.js static export; the build produces `out/`. Serve that folder with a static host. `next start` is not the preview command for a static export.
 
-## 🧪 Available Scripts
-- `npm run dev` – Start the development server.
-- `npm run build` – Create an optimized production build.
-- `npm run lint` – Run ESLint with the Next.js config.
+## Deployment
 
-## 🗺️ Next Steps
-Backend services (email ingestion, AI scoring, and outbound alerts) will be implemented in Python with Flask, then wired to these placeholder endpoints.
+Import into Vercel using the Next.js preset. The export configuration is in `next.config.js`; report paths are generated from `data/mockReports.ts`.
+
+## Structure
+
+- `app/test/page.tsx`: keyword demonstration.
+- `app/dashboard/page.tsx`: sample report dashboard.
+- `app/report/[id]/page.tsx`: exported report pages.
+- `data/mockReports.ts`: example data.
+
+## Next steps
+
+Add evaluation cases, improve accessibility, and design a secure backend before considering any real email-analysis integration. Theme and implementation notes are in `docs/`.

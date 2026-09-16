@@ -10,8 +10,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ReportPage({ params }: { params: { id: string } }) {
-  const report = mockReports.find((r) => r.id === parseInt(params.id));
+export default async function ReportPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const report = mockReports.find((r) => r.id === parseInt(id));
 
   if (!report) {
     return (

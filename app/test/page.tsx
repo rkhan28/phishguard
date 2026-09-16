@@ -18,30 +18,25 @@ export default function TestPage() {
     setIsAnalyzing(true);
     setResult(null);
 
-    // TODO: Replace the timeout with a POST request to `/api/analyze` when the backend is available.
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Deterministic local demonstration; no model or external request.
+
 
     const suspiciousKeywords = ["urgent", "immediate", "verify", "suspended", "click here", "act now", "limited time"];
     const lowerText = emailText.toLowerCase();
     const suspiciousCount = suspiciousKeywords.filter((kw) => lowerText.includes(kw)).length;
-    let score = Math.min(30 + suspiciousCount * 15, 95);
+    const score = Math.round(suspiciousCount / suspiciousKeywords.length * 100);
 
     const mockResult: EmailReport = {
       id: Date.now(),
       from: "analyzed@test.com",
       subject: "Email Security Analysis",
       score,
-      verdict: score >= 70 ? "Critical Threat" : score >= 50 ? "High Risk" : "Low Risk",
+      verdict: suspiciousCount ? "Matching phrases found" : "No configured phrases found",
       timestamp: new Date().toISOString(),
       body: emailText,
-      actions: score >= 70
-        ? ["DO NOT interact with this email", "Report to security team immediately", "Delete and block sender"]
-        : score >= 50
-        ? ["Verify sender through official channels", "Do not click any links", "Exercise extreme caution"]
-        : ["Email appears legitimate", "Verify sender if unexpected", "Proceed with normal caution"],
-      indicators: score >= 50
-        ? ["Suspicious urgency detected", "Potential social engineering", "Unusual sender patterns", "High-risk characteristics"]
-        : ["Standard email format", "No immediate threats detected", "Low-risk assessment"]
+      actions: ["Verify unexpected requests through a known contact channel", "A keyword score does not establish safety"],
+      indicators: suspiciousKeywords.filter(kw => lowerText.includes(kw)).map(kw => `Matched phrase: ${kw}`)
+
     };
 
     setResult(mockResult);
@@ -57,10 +52,10 @@ export default function TestPage() {
       >
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            <span className="text-gradient">Email Security Test</span>
+            <span className="text-gradient">Email Keyword Check</span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            Advanced AI analysis for phishing detection and threat assessment
+            A local keyword demonstration. Results are not a security verdict.
           </p>
         </div>
 
@@ -82,12 +77,12 @@ export default function TestPage() {
               {isAnalyzing ? (
                 <>
                   <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                  Analyzing Threat Vectors...
+                  Checking phrases...
                 </>
               ) : (
                 <>
                   <Shield className="mr-3 h-5 w-5" />
-                  Run Security Analysis
+                  Check wording
                 </>
               )}
             </Button>
@@ -109,7 +104,7 @@ export default function TestPage() {
                     }`}>
                       {result.score}
                     </div>
-                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Risk Level</div>
+                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Phrase match score</div>
                   </div>
                 </div>
                 <div className="relative h-3 w-full bg-secondary rounded-full overflow-hidden">
@@ -128,7 +123,7 @@ export default function TestPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <div className="w-1 h-5 bg-primary rounded-full" />
-                    Threat Indicators
+                    Matched phrases
                   </h3>
                   <ul className="space-y-3">
                     {result.indicators.map((indicator, i) => (
