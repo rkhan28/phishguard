@@ -27,6 +27,23 @@ export function Navbar() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const renderLinks = () => links.map((link) => {
+    const isActive = pathname === link.href;
+    return (
+      <Button
+        key={link.href}
+        asChild
+        variant={isActive ? "secondary" : "ghost"}
+        size="sm"
+        className={isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}
+      >
+        <Link href={link.href} aria-current={isActive ? "page" : undefined}>
+          {link.label}
+        </Link>
+      </Button>
+    );
+  });
+
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-6">
@@ -39,24 +56,9 @@ export function Navbar() {
             <span className="text-lg font-semibold text-foreground">PhishGuard</span>
           </Link>
 
-          {/* Navigation Links */}
+          {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-1">
-            {links.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link key={link.href} href={link.href}>
-                  <Button
-                    variant={isActive ? "secondary" : "ghost"}
-                    size="sm"
-                    className={`h-9 px-4 text-sm font-medium transition-colors ${
-                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {link.label}
-                  </Button>
-                </Link>
-              );
-            })}
+            {renderLinks()}
           </div>
 
           {/* Theme Toggle */}
@@ -77,6 +79,10 @@ export function Navbar() {
               </Button>
             )}
           </div>
+        </div>
+        {/* Keep the primary pages reachable on narrow screens. */}
+        <div className="flex gap-1 overflow-x-auto pb-3 md:hidden">
+          {renderLinks()}
         </div>
       </div>
     </nav>
